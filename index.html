@@ -2,9 +2,20 @@
 <html>
 <head>
   <meta charset="utf-8"></meta>
+  <link rel="manifest" href="/manifest.json">
+  <script>
+  //Service Workerがサポートされているかチェック
+  if (navigator.serviceWorker) {
+     //Service Worker を登録
+     console.log("Service Worker を登録");
+     navigator.serviceWorker.register('/sw.js'); 
+  }
+  </script>
 </head>
 
 <body>
-test2
+<h1>PWAテストサイト</h1>
+
+
 </body>
 </html>
