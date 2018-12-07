@@ -3,12 +3,13 @@ var urlsToCache = [
    '/',
    '/index.html'
 ];
+var CACHE_NAME = "cache-v1";
 
 //install イベントのハンドラ
 self.addEventListener('install', function(event) {
    event.waitUntil(
       //キャッシュを開く
-      caches.open('pwa-test')
+      caches.open(CACHE_NAME)
          .then(function(cache) {
             //アセットのリストをキャッシュに登録
 //            return cache.addAll(urlsToCache.map(url => new Request(url, {credentials: 'same-origin'})));
@@ -18,10 +19,11 @@ self.addEventListener('install', function(event) {
 
 
 self.addEventListener('activate', function(e) {
-  e.waitUntil(
+  alert('activate');
+   e.waitUntil(
     caches.keys().then(function(keyList) {
       return Promise.all(keyList.map(function(key) {
-        if (key !== 'pwa-test') {
+        if (key !== CACHE_NAME) {
           return caches.delete(key);
         }
       }));
