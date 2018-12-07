@@ -12,8 +12,10 @@
   //Service Workerがサポートされているかチェック
   if (navigator.serviceWorker) {
      //Service Worker を登録
-     console.log("Service Worker を登録");
-     navigator.serviceWorker.register('/sw.js'); 
+    console.log("Service Worker を登録");
+    navigator.serviceWorker.register('/sw.js'); 
+  } else {
+    alert("not valid serviceWorker.");
   }
   </script>
 </head>
