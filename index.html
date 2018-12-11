@@ -17,33 +17,32 @@
   } else {
     alert("not valid serviceWorker.");
   }
-  </script>
+
+  var notifictionFlag = false;
+  if (!("Notification" in window)) {
+    alert("このブラウザはシステム通知をサポートしていません");
+  }
+  // すでに通知の許可を得ているか確認する
+  else if (Notification.permission === "granted") {
+    // 許可を得ている場合は、通知を作成する
+    var notification = new Notification("Hi there!");
+    notifictionFlag = true;
+  }
+  // 許可を得ていない場合は、ユーザに許可を求めなければならない
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      // ユーザが許可した場合は、通知を作成する
+      if (permission === "granted") {
+        var notification = new Notification("Hi there!");
+        notifictionFlag = true;
+      }
+    });
+  }
+</script>
 </head>
 
 <body>
 <h1>PWAテストサイト6</h1>
-
-<p>PC広告ここから</p>
-<!--
-<script type="text/javascript">
-    var amp_sct = '2';
-    var amp_med = '2000178';
-    var amp_site = '5000250';
-    var amp_frame = '5002184';
-    var amp_iframe = '0';
-    var amp_height = '250';
-    var amp_width = '300';
-    var amp_type = '0';
-    var amp_rgl = '4';
-    var amp_rurl = document.referrer;
-    var amp_send = location.protocol + '//ads200.adjust-search.jp/adserver/ad/ads.js';
-    document.write("<scr" + "ipt language='javascript' src='" + amp_send + "'></scr" + "ipt>");
-</script>
-<noscript>
-    <iframe src="https://ads200.adjust-search.jp/adserver/ads?med=2000178&site=5000250&frame=5002184&height=250&width=300&type=0&sct=2&rgl=4" scrolling="no" height="250" width="300" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-</noscript>
--->
-<p>広告ここまで</p>
 
 <p>SP広告</p>
 <!--
@@ -58,7 +57,19 @@
 </script>
 -->
 <p>広告ここまで</p>
-  
-  
+
+<input type="button" id="button" value="通知ボタン"></input>
+  <script>
+
+  !(function() {
+    var button = document.getElementById('button');
+    button.addEventListener('click', function() {
+      console.log("click");
+      notification = new Notification("通知だよ！");
+    });
+  })();
+
+</script>
+
 </body>
 </html>
