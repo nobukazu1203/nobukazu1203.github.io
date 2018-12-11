@@ -3,7 +3,7 @@ var urlsToCache = [
    '/',
    '/index.html'
 ];
-var CACHE_NAME = "cache-v3";
+var CACHE_NAME = "cache-v4";
 
 //install イベントのハンドラ
 self.addEventListener('install', function(event) {
