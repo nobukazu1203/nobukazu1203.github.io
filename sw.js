@@ -3,7 +3,7 @@ var urlsToCache = [
    '/',
    '/index.html'
 ];
-var CACHE_NAME = "cache-v2";
+var CACHE_NAME = "cache-v3";
 
 //install イベントのハンドラ
 self.addEventListener('install', function(event) {
@@ -19,7 +19,7 @@ self.addEventListener('install', function(event) {
 
 
 self.addEventListener('activate', function(e) {
-  alert('activate');
+  console.log('activate');
    e.waitUntil(
     caches.keys().then(function(keyList) {
       return Promise.all(keyList.map(function(key) {
