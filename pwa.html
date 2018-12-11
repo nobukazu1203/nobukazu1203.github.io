@@ -62,8 +62,9 @@
   !(function() {
     var button = document.getElementById('button');
     button.addEventListener('click', function() {
-      console.log("click");
+      alert("click1.");
       notification = new Notification("通知だよ！");
+      alert("click2.");
     });
   })();
 </script>
