@@ -2,6 +2,7 @@
 var urlsToCache = [
    '/',
    '/index.html',
+   '/index2.html',
    '/images/logo/256x256.png'
 ];
 var CACHE_NAME = "cache-v4";
