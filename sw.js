@@ -1,7 +1,8 @@
 //キャッシュするアセットのリスト
 var urlsToCache = [
    '/',
-   '/index.html'
+   '/index.html',
+   '/images/logo/256x256.png'
 ];
 var CACHE_NAME = "cache-v4";
 
