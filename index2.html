@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+  <meta charset="UTF-8"></meta>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0 , maximum-scale=1.0 , user-scalable=0"></meta>
+  <meta name="apple-touch-fullscreen" content="YES"></meta>
+  <meta name="format-detection" content="telephone=no"></meta>
+  <meta name="format-detection" content="email=no"></meta>
+  <link rel="manifest" href="/manifest.json"></link>
+  <script>
+  //Service Workerがサポートされているかチェック
+  if (navigator.serviceWorker) {
+     //Service Worker を登録
+    console.log("Service Worker を登録");
+    navigator.serviceWorker.register('/sw2.js'); 
+  } else {
+    alert("not valid serviceWorker.");
+  }
+  var notifictionFlag = false;
+  if (!("Notification" in window)) {
+    alert("このブラウザはシステム通知をサポートしていません");
+  }
+  // すでに通知の許可を得ているか確認する
+  else if (Notification.permission === "granted") {
+    // 許可を得ている場合は、通知を作成する
+    var notification = new Notification("Hi there!");
+    notifictionFlag = true;
+  }
+  // 許可を得ていない場合は、ユーザに許可を求めなければならない
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      // ユーザが許可した場合は、通知を作成する
+      if (permission === "granted") {
+        var notification = new Notification("Hi there!");
+        notifictionFlag = true;
+      }
+    });
+  }
+</script>
+</head>
+
+<body>
+<h1>PWAテストサイト</h1>
+
+<p>SP広告</p>
+<script type="text/javascript">
+    var amp_med = '2000175';
+    var amp_site = '500000250';
+    var amp_frame = '500002808';
+    var amp_overlay = '0';
+    var amp_rurl = document.referrer;
+    var amp_send = location.protocol + '//afs200.adjust-search.jp/adserver/sp/ads.js';
+    document.write("<scr" + "ipt type='text/javascript' src='" + amp_send + "'></scr" + "ipt>");
+</script>
+<p>広告ここまで</p>
+
+  <img style="height:256px;width:256px;" src="/images/logo/256x256.png"></img><br />
+
+<input type="button" id="button" value="通知ボタン"></input>
+  <script>
+  !(function() {
+    var button = document.getElementById('button');
+    button.addEventListener('click', function() {
+      console.log("click");
+      notification = new Notification("通知だよ！");
+    });
+  })();
+</script>
+
+</body>
+</html>
