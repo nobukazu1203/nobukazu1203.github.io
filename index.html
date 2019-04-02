@@ -1,75 +1,103 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
-  <meta charset="UTF-8"></meta>
-  <meta name="viewport" content="width=device-width , initial-scale=1.0 , maximum-scale=1.0 , user-scalable=0"></meta>
-  <meta name="apple-touch-fullscreen" content="YES"></meta>
-  <meta name="format-detection" content="telephone=no"></meta>
-  <meta name="format-detection" content="email=no"></meta>
-  <link rel="manifest" href="/manifest.json"></link>
-  <script>
-  //Service Workerがサポートされているかチェック
-  if (navigator.serviceWorker) {
-     //Service Worker を登録
-    console.log("Service Worker を登録");
-    navigator.serviceWorker.register('/sw.js'); 
-  } else {
-    alert("not valid serviceWorker.");
-  }
-
-  var notifictionFlag = false;
-  if (!("Notification" in window)) {
-    alert("このブラウザはシステム通知をサポートしていません");
-  }
-  // すでに通知の許可を得ているか確認する
-  else if (Notification.permission === "granted") {
-    // 許可を得ている場合は、通知を作成する
-    var notification = new Notification("Hi there!");
-    notifictionFlag = true;
-  }
-  // 許可を得ていない場合は、ユーザに許可を求めなければならない
-  else if (Notification.permission !== 'denied') {
-    Notification.requestPermission(function (permission) {
-      // ユーザが許可した場合は、通知を作成する
-      if (permission === "granted") {
-        var notification = new Notification("Hi there!");
-        notifictionFlag = true;
+<!doctype html>
+<html amp lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>Hello, AMPs</title>
+    <link rel="canonical" href="https://sc-media.beyondx.jp/amp/test.html">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Open-source framework for publishing content",
+        "datePublished": "2015-10-07T12:02:41Z",
+        "image": [
+          "logo.jpg"
+        ]
       }
-    });
+    </script>
+    <style amp-boilerplate>
+
+body {
+  -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+  -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+  -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+  animation: -amp-start 8s steps(1, end) 0s 1 normal both
+}
+
+@-webkit-keyframes -amp-start {
+  from {
+    visibility: hidden
   }
-</script>
-</head>
+  to {
+    visibility: visible
+  }
+}
 
-<body>
-<h1>PWAテストサイト</h1>
+@-moz-keyframes -amp-start {
+  from {
+    visibility: hidden
+  }
+  to {
+    visibility: visible
+  }
+}
 
-<p>SP広告</p>
-<script type="text/javascript">
-    var amp_med = '2000175';
-    var amp_site = '500000250';
-    var amp_frame = '500002808';
-    var amp_overlay = '0';
-    var amp_rurl = document.referrer;
-    var amp_send = location.protocol + '//afs200.adjust-search.jp/adserver/sp/ads.js';
-    document.write("<scr" + "ipt type='text/javascript' src='" + amp_send + "'></scr" + "ipt>");
-</script>
-<p>広告ここまで</p>
+@-ms-keyframes -amp-start {
+  from {
+    visibility: hidden
+  }
+  to {
+    visibility: visible
+  }
+}
 
-  <img style="height:256px;width:256px;" src="/images/logo/256x256.png"></img><br />
+@-o-keyframes -amp-start {
+  from {
+    visibility: hidden
+  }
+  to {
+    visibility: visible
+  }
+}
 
-<input type="button" id="button" value="通知ボタン"></input>
-  <script>
+@keyframes -amp-start {
+  from {
+    visibility: hidden
+  }
+  to {
+    visibility: visible
+  }
+}
+    </style>
 
-  !(function() {
-    var button = document.getElementById('button');
-    button.addEventListener('click', function() {
-      console.log("click");
-      notification = new Notification("通知だよ！");
-    });
-  })();
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
-</script>
 
-</body>
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+
+  </head>
+  <body>
+    <h1>Welcome to the mobile web</h1>
+
+<!--
+    <amp-img src="img/popular1.jpg" alt="Welcome" height="400" width="800"></amp-img>
+-->
+
+<!-- example -->
+<!--
+<amp-ad width=728 height=90
+    type="doubleclick"
+    data-slot="/6355419/Travel">
+</amp-ad>
+-->
+
+
+<amp-ad width=300 height=250
+    type="doubleclick"
+    data-slot="/3199946/石鍋検証用_親広告ユニット/AMPTest_300x250">
+</amp-ad>
+
+  </body>
 </html>
